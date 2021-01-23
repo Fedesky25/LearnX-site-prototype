@@ -18,7 +18,11 @@ function fade(target){
 const headerObs = new IntersectionObserver(entries=>{entries.forEach(entry=>{
     if(entry.isIntersecting) fade(nav); else appear(nav);
 })}, {rootMargin: '-30px 0px 0px 0px'});
-headerObs.observe(header)
+
+window.addEventListener('resize', e=>{
+    if(window.innerWidth > 900) {nav.classList.add('fader'); headerObs.observe(header);}
+    else {nav.classList.remove('fader'); headerObs.unobserve(header);}
+})
 
 document.querySelectorAll('nav a[href^="#"]').forEach(element=>{
     const target = document.getElementById(element.getAttribute('href').slice(1));
@@ -36,3 +40,20 @@ document.addEventListener('scroll', ()=>{
         ticking = true;
     }
 })
+
+const navToggler = document.getElementById('nav-toggler');
+const contents = document.querySelectorAll('header, section, footer');
+let navOpen = false;
+navToggler.addEventListener('click', e=>{
+    function close() {
+        nav.classList.remove('show');
+        contents.forEach(el=>{el.removeEventListener('touchend', close);});
+        navOpen=false;
+    }
+    if(navOpen) {close();}
+    else {
+        nav.classList.add('show');
+        contents.forEach(el=>{el.addEventListener('touchend', close)});
+        navOpen=true;
+    }
+});

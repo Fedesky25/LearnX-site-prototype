@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnX Global Network</title>
+    <meta name="description" content="Non-profit organization promoting equality of opportunity for globally talented students, through podcasts and reports.">
     <link rel="stylesheet" href="./css/index.css">
 </head>
 <body>
@@ -18,10 +19,10 @@
                 <li><a href="./interviews.html">interviews</a></li>
                 <li><a href="./about.html">about</a></li>
                 <li><a href="./team.html">our team</a></li>
-                <li><a href="#socials">social media</a></li>
+                <li><a href="#socials">socials</a></li>
             </ul>
         </nav>
-        <a href="#apply">
+        <a href="#apply" aria-label="Scroll down">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 85" onclick="smoothScrollTo(document.getElementById('apply'), 40, 400)">
                 <path d="M5,5L50,30L95,5" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
                 <path d="M5,30L50,55L95,30" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round"/>
@@ -29,7 +30,7 @@
             </svg>
         </a>
     </header>
-    <nav id="nav" class="side-nav fader" data-translation="-100%,0" data-duration="200">
+    <nav id="nav" class="side-nav" data-translation="-100%,0" data-duration="200">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="-.4 -.4 100.8 100.8">
             <path d="M100,50 A50,50 0 1,0 93.3013,75" stroke="var(--yellow)" stroke-linecap="round" stroke-width=".8" fill="none"/>
         </svg>
@@ -37,8 +38,13 @@
             <li><a href="./about.html">About</a></li>
             <li><a href="./interviews.html">Interviews</a></li>
             <li><a href="#universities">Universities</a></li>
-            <li><a href="#socials">Social media</a></li>
+            <li><a href="#socials">Socials</a></li>
         </ul>
+        <button type="menu" id="nav-toggler" aria-label="Menu button">
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+            <div class="burger-line"></div>
+        </button>
     </nav>
     <div class="brand">LearnX</div>
     <div class="water">LearnX</div>
@@ -85,7 +91,7 @@
     </section>
     <section id="universities">
         <h2>Universities involved</h2>
-        <p class="w-2">These are the istitutes covered so far, but many more collaborations are awaiting. In the meantime, take a look to all our interviews</p>
+        <p class="w-2">These are the istitutes covered so far, but many more collaborations are awaiting. In the meantime, take a look to all our interviews.</p>
         <a class="btn" href="./interviews.html">Meet the applied students</a>
         <ul class="portfolio w-1">
             <li>
