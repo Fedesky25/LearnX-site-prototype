@@ -25,6 +25,12 @@ body {
     overflow-x: hidden;
 }
 
+@keyframes right-clipping {
+    0% {clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);}
+    100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
+}
+.clipper {animation: right-clipping 1s .25s ease-in-out both;}
+
 .burger-line {
     width: 100%;
     height: 3px;
@@ -108,9 +114,11 @@ body {
         top: 14rem;
         left: 1.5rem;
         color: var(--blue);
-        animation-fill-mode: both;
         z-index: 0;
+        transform: translateX(-200%);
+        transition: transform ease .35s;
     }
+    nav.side-nav.show {transform: translateX(0);}
     nav.side-nav ul {list-style: none;}
     nav.side-nav li {
         opacity: .3;
@@ -151,16 +159,14 @@ body {
 
 .brand {
     position: fixed;
-    top: 0.1rem;
-    right: 1.2rem;
+    top: 0rem;
+    right: 1rem;
     transform: rotate(-90deg);
     transform-origin: right bottom;
     z-index: -1;
-
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--blue);
-    mix-blend-mode:screen;
+}
+.brand img {
+    width: 110px;
 }
 @media screen and (max-width: 530px){.brand {display: none;}}
 
@@ -193,9 +199,9 @@ header {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, rgba(32,32,32,.7), rgba(32,32,32,.7)), url('../img/AcademicLibrary.jpg');
+    background: linear-gradient(to bottom, rgba(32,32,32,.65), rgba(32,32,32,.65)), url('../img/Library.jpg');
     background-size: cover;
-    background-position: center bottom;
+    background-position: center;
     overflow-x: hidden;
 }
 header p {
@@ -207,6 +213,7 @@ header p {
     border-radius: 10px;
     font-size: clamp(1rem, 2.5vw, 1.2rem);
     text-align: center;
+    animation: top-unfading .7s .1s ease-out both;
 }
 header > a {
     position: absolute;
@@ -230,6 +237,14 @@ header svg > path:nth-child(3) {animation-delay: .2s;}
     0% {transform: scale(1);}
     50% {transform: scale(.9);}
     100% {transform: scale(1);}
+}
+@keyframes stripe-clipping {
+    0% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
+    100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
+}
+@keyframes top-unfading {
+    0% {opacity: 0; transform: translateY(80%);}
+    100% {opacity: 1; transform: translateY(0);}
 }
 
 header nav {
@@ -278,8 +293,9 @@ h1::before {
     left: -2.5rem;
     right: 0;
     transform: skewY(2deg);
-    background-color: rgba(var(--yellow-rgb), .8);
+    background-color: rgba(var(--yellow-rgb), .7);
     z-index: -1;
+    animation: stripe-clipping .6s ease-out both;
 }
 h1::after {
     content: '';
@@ -289,8 +305,9 @@ h1::after {
     left: 0;
     right: -2.5rem;
     transform: skewY(-5deg);
-    background-color: rgba(0,0,0, .65);
+    background-color: rgba(0,0,0, .7);
     z-index: -2;
+    animation: stripe-clipping .6s .1s ease-in-out both;
 }
 @media screen and (max-width: 530px) {
     header nav {

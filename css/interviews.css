@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&display=swap');
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --yellow: #daaa00;
+    --yellow-rgb: 218, 170, 0;
+    --dark-yellow: #a17e00;
+    --dark-yellow-rgb: 161, 126, 0;
+    --blue: #2c3b49;
+    --blue-rgb: 44, 59, 73;
+}
+::selection {
+    color: white;
+    background-color: var(--yellow);
+}
+body {
+    font-family: "Merriweather", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    overflow-x: hidden;
+}
+h1 {margin: 0 auto;}
