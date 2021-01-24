@@ -29,7 +29,11 @@ body {
     0% {clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);}
     100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
 }
-.clipper {animation: right-clipping 1s .25s ease-in-out both;}
+.clipper {animation: right-clipping .7s ease-in-out both;}
+.clipper:nth-last-child(1) {animation-delay: .15s;}
+.clipper:nth-last-child(2) {animation-delay: .20s;}
+.clipper:nth-last-child(3) {animation-delay: .25s;}
+.clipper:nth-last-child(4) {animation-delay: .30s;}
 
 .burger-line {
     width: 100%;
@@ -159,14 +163,12 @@ body {
 
 .brand {
     position: fixed;
-    top: 0rem;
+    top: 1rem;
     right: 1rem;
-    transform: rotate(-90deg);
+    transform: translateY(-100%) rotate(-90deg);
     transform-origin: right bottom;
     z-index: -1;
-}
-.brand img {
-    width: 110px;
+    width: 100px;
 }
 @media screen and (max-width: 530px){.brand {display: none;}}
 

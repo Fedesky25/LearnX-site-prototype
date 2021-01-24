@@ -7,6 +7,36 @@
     <link rel="stylesheet" href="./css/interviews.css">
 </head>
 <body>
-    <h1>LearnX podcasts</h1>
+    <header>
+        <h1>LearnX podcasts</h1>
+        <p>Here's the full list of our interviews with highlighted all the timestamps to useful information.</p>
+    </header>
+    <article class="podcast">
+        <div class="podcast__content">
+            <h3 class="podcast__title">Northwestern University in Qatar</h3>
+            <h4 class="podcast__subtitle">Interview with Muhammadjon</h4>
+            <p class="podcast__desc">
+                This is our interview with Muhammadjon, a student from Uzbekistan. 
+                Join us to find out a detailed story of applying for Northwestern University in Qatar.
+            </p>
+            <ul class="podcast__timestamps">
+                <li><button type="button" data-time="67">Reasons of your choice</button></li>
+                <li><button type="button" data-time="158">Majors offered</button></li>
+                <li><button type="button" data-time="300">Optional major choice when applying</button></li>
+                <li><button type="button" data-time="471">Financial scholarship offered</button></li>
+            </ul>
+        </div>
+        <div class="podcast__video">
+            <div class="aspect-ratio">
+                <iframe id="podcast1" width="640" height="360"
+                        src="https://www.youtube.com/embed/4yEQs37nKOU?enablejsapi=1"
+                        frameborder="0"
+                ></iframe>
+            </div>
+        </div>
+    </article>
+    <img class="brand" src="./img/logo.png" alt="LearnX Logo">
+    <div class="water">LearnX</div>
+    <script src="./js/interviews.js"></script>
 </body>
 </html>
