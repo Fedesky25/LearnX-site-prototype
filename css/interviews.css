@@ -1,78 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@400;500;600;700&display=swap');
-*, *::before, *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-:root {
-    --yellow: #daaa00;
-    --yellow-rgb: 218, 170, 0;
-    --dark-yellow: #a17e00;
-    --dark-yellow-rgb: 161, 126, 0;
-    --blue: #2c3b49;
-    --blue-rgb: 44, 59, 73;
-}
-::selection {
-    color: white;
-    background-color: var(--yellow);
-}
-.water {
-    position: fixed;
-    bottom: 0;
-    right: 4rem;
-    z-index: -5;
-    font-size: 18rem;
-    line-height: 15rem;
-    font-weight: 600;
-    color: rgba(0,0,0,.032);
-    user-select: none;
-}
-@media screen and (max-width: 800px) {
-    .water {
-        transform-origin: right bottom;
-        transform: rotate(-90deg) translateX(50%);
-        right: 0rem;
-        right: clamp(0rem, calc(3vw - 2rem), 4rem);
-    }
-}
-body {
-    font-family: "Merriweather", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    overflow-x: hidden;
-}
-
-
+body {min-height: 120vh;}
 header {
     margin-bottom: 3rem;
     padding: 2.5rem 1rem;
     text-align: center;
 }
-h1 {
-    font-size: 2.3rem;
-    text-transform: capitalize;
-    margin-bottom: 1rem;
-}
 header p {
     max-width: 50ch;
-    margin: 0 auto;
+    margin: 3rem auto 0;
 }
-
-.podcast {
+.podcast,
+.podcast--reverse {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
-.podcast > * {padding: 1rem;}
+.podcast + .podcast, .podcast--reverse + .podcast--reverse,
+.podcast + .podcast--reverse, .podcast--reverse + .podcast {margin-top: 5rem;}
+.podcast--reverse {flex-direction: row-reverse;}
+.podcast > *, .podcast--reverse > * {padding: 1rem;}
 .podcast__content {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 50ch;
+    order: 1;
     max-width: 60ch;
     min-width: 40ch;
 }
 .podcast__title {
     font-size: 1.5rem;
     color: var(--blue);
+    position: relative;
+    margin-left: .4em;
+}
+.podcast__title::before {
+    content: '';
+    position: absolute;
+    top: .25em;
+    bottom: .15em;
+    left: -.4em;
+    width: .2em;
+    background-color: var(--yellow);
 }
 .podcast__subtitle {
     font-size: 1.1rem;
@@ -81,14 +49,13 @@ header p {
 }
 .podcast__desc {
     margin-top: 1rem;
-    padding-left: .6rem;
 }
 .podcast__timestamps {
     padding-left: 1.5rem;
     margin-top: 1rem;
 }
 .podcast__timestamps li::marker {color: var(--yellow);}
-.podcast__timestamps li + li {margin-top: .15rem;}
+.podcast__timestamps li + li {margin-top: .2rem;}
 .podcast__timestamps button {
     border: 0;
     background: unset;
@@ -97,38 +64,31 @@ header p {
     font-family: "Merriweather", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     cursor: pointer;
     color: var(--blue);
-
+    text-align: left;
+    white-space: normal;
+    word-wrap: normal;
+    overflow-wrap: normal;
+    max-width: calc(100vw - 1.5rem - 2rem);
 }
 .podcast__timestamps button::after {
-    /* content: '';
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: .8ch;
-    border-left: 5px solid #bbb;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent; */
-    
     content: ' - play';
-    color: #bbb;
+    color: #999;
+    font-weight: 400;
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-
     opacity: 0;
-    transition: opacity .3s ease-in, clip-path .3s ease-in;
+    transition: opacity .2s ease-in, clip-path .2s ease-out;
 }
-.podcast__timestamps button:hover::after {
+.podcast__timestamps button[data-time]::after {content: ' ' attr(data-time);}
+.podcast__timestamps button:hover::after, .podcast__timestamps button:focus::after {
     opacity: 1;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }
-.podcast__timestamps button:focus {
-    outline: none;
-    text-decoration: underline;
-    text-decoration-color: var(--yellow);
-}
+.podcast__timestamps button:focus {outline: none;}
 .podcast__video {
     flex-grow: 1;
     flex-shrink: 1;
     flex-basis: 50ch;
+    order: 2;
     max-width: 60ch;
 }
 .aspect-ratio {
@@ -137,19 +97,10 @@ header p {
     height: 0;
     padding-bottom: 56.25%;
 }
-.aspect-ratio > iframe {
+.aspect-ratio > * {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
-}
-
-.brand {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    transform: translateY(-100%) rotate(-90deg);
-    transform-origin: bottom right;
-    width: 100px;
 }
