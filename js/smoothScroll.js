@@ -1,3 +1,9 @@
+/**
+* Smoothly scrolls to the target
+* @param {HTMLElement} target target of the scrolling
+* @param {Number} offset offset to apply
+* @param {Number} duration duration of the scrolling
+*/
 function smoothScrollTo(target, offset, duration) {
     let start = window.scrollY, end = target.offsetTop - offset, delta, initialTime;
     if (end > document.body.scrollHeight - window.innerHeight) delta = document.body.scrollHeight - window.innerHeight - start;

@@ -5,12 +5,6 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const players = [];
 function onYouTubeIframeAPIReady() {populate()}
-// document.querySelectorAll('.podcast__timestamps button[data-time]').forEach(el=>{
-//     el.addEventListener('click', e=>{
-//         player1.seekTo(parseInt(el.getAttribute('data-time')));
-//         player1.playVideo();
-//     })
-// })
 
 // water mark handler
 const water = document.querySelector('.water');
