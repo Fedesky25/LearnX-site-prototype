@@ -1,13 +1,4 @@
 body {min-height: 120vh;}
-header {
-    margin-bottom: 3rem;
-    padding: 2.5rem 1rem;
-    text-align: center;
-}
-header p {
-    max-width: 50ch;
-    margin: 3rem auto 0;
-}
 .podcast,
 .podcast--reverse {
     display: flex;
@@ -37,7 +28,7 @@ header p {
 .podcast__title::before {
     content: '';
     position: absolute;
-    top: .25em;
+    top: .15em;
     bottom: .15em;
     left: -.4em;
     width: .2em;

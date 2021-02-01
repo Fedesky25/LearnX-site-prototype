@@ -6,18 +6,10 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 const players = [];
 function onYouTubeIframeAPIReady() {populate()}
 
-// water mark handler
-const water = document.querySelector('.water');
-let ticking = false;
-document.addEventListener('scroll', ()=>{
-    if(!ticking){
-        requestAnimationFrame(()=>{
-            water.style.bottom = `${window.scrollY/120}rem`
-            ticking = false;
-        })
-        ticking = true;
-    }
-})
+// init water mark
+initWaterMark(120);
+setAnchors(20);
+initNavToggle(document.querySelectorAll('header, main, footer'));
 
 Number.prototype.toMMSS = function () {
     const rem = this % 60;
@@ -39,7 +31,7 @@ function populate(){
                 const html = []
                 html.push(`<div class="podcast__content"><h3 class="podcast__title">${doc.istitute}</h3><h4 class="podcast__subtitle">Interview with ${doc.studentName}</h4><p class="podcast__desc">${doc.description}</p><ul class="podcast__timestamps">`);
                 doc.timestamps.forEach(time=>{
-                    html.push(`<li><button type="button" onclick="players[${index}].seekTo(${time.time});" data-time="${time.time.toMMSS()}">${time.label}</button></li>`);
+                    html.push(`<li><button type="button" onclick="players[${index}].seekTo(${time.time}); players[${index}].playVideo();" data-time="${time.time.toMMSS()}">${time.label}</button></li>`);
                 })
                 html.push(`</ul></div><div class="podcast__video"><div class="aspect-ratio"><iframe id="pc${index}" src="https://www.youtube.com/embed/${doc.videoID}?enablejsapi=1" frameborder="0" allow="fullscreen"></iframe></div></div>`);
                 article.innerHTML = html.join('');

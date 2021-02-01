@@ -1,0 +1,95 @@
+h2, h3 {
+    width: fit-chunk;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    color: black;
+    font-size: 2rem;
+    position: relative;
+    padding: 1.5rem;
+    width: fit-chunk;
+    margin: 0 auto 2.5rem;
+}
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12rem;
+    height: 3px;
+    border-radius: 10px;
+    background-color: var(--yellow);
+}
+
+
+section + section {margin-top: 3rem;}
+
+.chunk,
+.chunk--reverse {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    column-gap: 8rem;
+    column-gap: clamp(4rem, calc(11vw - 2.8rem), 8rem);
+    row-gap: 1.5rem;
+    padding: 2rem;
+    overflow-x: hidden;
+
+    --content-order: 1;
+    --fig-order: 2;
+    --align: right;
+    --hidden-translation: 50px;
+}
+.chunk--reverse {
+    --content-order: 2;
+    --fig-order: 1;
+    --align: left;
+    --hidden-translation: -50px;
+    flex-wrap: wrap-reverse;
+}
+.chunk + .chunk,
+.chunk--reverse + .chunk,
+.chunk + .chunk--reverse,
+.chunk--reverse + .chunk--reverse {
+    margin-top: 2rem;
+}
+
+.chunk__content {
+    order: var(--content-order);
+    text-align: var(--align);
+    transform: translateX(calc( 0px - var(--hidden-translation)));
+}
+.chunk__fig {
+    order: var(--fig-order);
+    max-width: 100%;
+    user-select: none;
+    transform: translateX(var(--hidden-translation));
+}
+.chunk__fig, .chunk__content {
+    flex: .1 1 50ch;
+    opacity: 0;
+    transition: transform .5s ease-out, opacity .5s ease-in;
+}
+.chunk__fig > img, .chunk__fig > svg {
+    max-height: 30ch;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+.chunk.appear .chunk__content,
+.chunk.appear .chunk__fig,
+.chunk--reverse.appear .chunk__content,
+.chunk--reverse.appear .chunk__fig {
+    transform: translate(0);
+    opacity: 1;
+}
+
+.chunk__title {
+    font-size: 1.4rem;
+    margin-bottom: .3rem;
+    color: var(--blue);
+}

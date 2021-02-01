@@ -7,15 +7,6 @@
     <link rel="stylesheet" href="./css/common.css">
     <style>
         body {min-height: 120vh;}
-        header {
-            margin-bottom: 3rem;
-            padding: 2.5rem 1rem;
-            text-align: center;
-        }
-        header p {
-            max-width: 50ch;
-            margin: 3rem auto 0;
-        }
 
         .split-screen {
             display: grid;
@@ -126,7 +117,7 @@
     </style>
 </head>
 <body>
-    <header>
+    <header class="common-header">
         <h1 class="striped-title">LearnX podcasts</h1>
         <p>
             Here's the full list of our interviews with highlighted all the timestamps to useful information.
@@ -178,7 +169,7 @@
         LearnX Global Network&trade; 2020-2021
     </footer>
 
-    <script src="./js/smoothScroll.js"></script>
+    <script src="./js/common.js"></script>
     <script>
         const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
@@ -275,23 +266,15 @@
             smoothScrollTo(focusedPodcast, 0, 250);
             setTimeout(()=>{
                 snap.start();
-                if(player.playerInfo.videoData.video_id != focusedPodcast.getAttribute('data-id')) player.loadVideoById(focusedPodcast.getAttribute('data-id'));
+                if(player.playerInfo.videoData.video_id != focusedPodcast.getAttribute('data-id')) {
+                    player.loadVideoById(focusedPodcast.getAttribute('data-id'));
+                    player.pauseVideo();
+                }
             }, 301);
         }, 300, false);
 
         // water mark handler
-        const water = document.querySelector('.water');
-        let ticking = false;
-        document.addEventListener('scroll', ()=>{
-            if(!ticking){
-                requestAnimationFrame(()=>{
-                    water.style.bottom = `${window.scrollY/120}rem`
-                    ticking = false;
-                })
-                ticking = true;
-            }
-        })
-
+        initWaterMark(120);
     </script>
 </body>
 </html>
