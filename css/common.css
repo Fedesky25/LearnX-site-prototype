@@ -162,12 +162,18 @@ header.common-header p {
     .navaside .hidden-narrow {display: none;}
 }
 @media screen and (min-width: 900px){
-    body {
-        padding-left: 3.15rem;
+    :root {
+        --icon-w: 1.8rem;
+        --nav-w: 3.15rem;
+    }
+    body {padding-left: var(--nav-w)}
+    body > .escape-navaside {
+        width: calc(100% + var(--nav-w));
+        transform: translateX(calc( 0px - var(--nav-w)));
+        z-index: 15;
     }
     .navaside {
-        --icon-w: 1.8rem;
-        width: calc(var(--icon-w) * 1.75);
+        width: var(--nav-w);
         position: fixed;
         top: 0;
         left: 0;
@@ -177,7 +183,7 @@ header.common-header p {
         flex-direction: column;
         justify-content: center;
         z-index: 10;
-        box-shadow: 0 0 15px rgba(0,0,0,.2);
+        box-shadow: 0 0 15px rgba(0,0,0,.25);
     }
     .navaside__links {
         list-style: none;

@@ -215,7 +215,7 @@ ul.dark-paper::before {
     bottom: 0;
     left: 50%;
     z-index: -2;
-    width: 101%;
+    width: 100%;
     transform: translateX(-50%) skewY(-2deg);
     background-color: var(--blue);
     box-shadow: 0 0 15px rgba(0,0,0,.3);
