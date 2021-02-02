@@ -56,10 +56,6 @@ header svg > path:nth-child(3) {animation-delay: .2s;}
     50% {transform: scale(.9);}
     100% {transform: scale(1);}
 }
-@keyframes stripe-clipping {
-    0% {clip-path: polygon(50% 0, 50% 0, 50% 100%, 50% 100%);}
-    100% {clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);}
-}
 @keyframes top-unfading {
     0% {opacity: 0; transform: translateY(80%);}
     100% {opacity: 1; transform: translateY(0);}
@@ -145,6 +141,7 @@ h1::after {
         transform: skewY(-8deg);
     }
 }
+@media (prefers-reduced-animation) {.clipper, header p, h1::before, h1::after {animation: none;}}
 
 section {
     width: 100%;
@@ -213,10 +210,11 @@ ul.dark-paper::before {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: 50%;
+    left: 0;
+    right: 0;
     z-index: -2;
     width: 100%;
-    transform: translateX(-50%) skewY(-2deg);
+    transform: skewY(-2deg);
     background-color: var(--blue);
     box-shadow: 0 0 15px rgba(0,0,0,.3);
 }
