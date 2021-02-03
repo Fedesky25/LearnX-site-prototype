@@ -1,4 +1,5 @@
 # LearnX global network site prototype, by Fedesky25
+See the [preview](https://fedesky25.github.io/learnx-site-prototype/). Features:
 * All html files in same folder
 * All js, css, images in their respective folders
 * No dependencies, so no external library that need more HTTP requests and several hundread KB download

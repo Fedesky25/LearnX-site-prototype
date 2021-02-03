@@ -63,9 +63,9 @@ header svg > path:nth-child(3) {animation-delay: .2s;}
 
 header nav {
     position: absolute;
-    top: 1.5rem;
+    top: 1.25rem;
     right: 2rem;
-    max-width: 60%;
+    max-width: 50%;
     width: 50ch;
 }
 header nav ul {
@@ -76,7 +76,7 @@ header nav ul {
     flex-wrap: wrap;
     /* row-gap: .5rem; */
 }
-header nav ul > li + li {margin-top: .5rem;}
+header nav li {margin: .25rem;} 
 header nav a {
     padding: .3rem .7rem;
     text-decoration: none;
