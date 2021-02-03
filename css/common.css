@@ -216,9 +216,11 @@ header.common-header p {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
     }
-    .navaside__links a:hover {
+    .navaside__links a:hover,
+    .navaside__links a:focus {
         background-color: #425261;
         color: white;
+        outline: none;
     }
     .navaside__links a[aria-label]::after {
         content: attr(aria-label);
@@ -239,10 +241,14 @@ header.common-header p {
         padding: 0 1rem;
         border-top-right-radius: 8px;
         border-bottom-right-radius: 8px;
-        clip-path: inset(-1px 100% -1px 0);
+        clip-path: inset(-16px 100% -16px 0);
         transition: clip-path .3s ease-out;
     }
-    .navaside__links a:hover::after {clip-path: inset(-1px 0 -1px 0);}
+    .navaside__links a:hover::after,
+    .navaside__links a:focus::after {
+        clip-path: inset(-16px -16px -16px 0);
+        box-shadow: 0 0 15px rgba(0,0,0,.2);
+    }
     .navaside__links a > svg {
         width: var(--icon-w);
         height: var(--icon-w);

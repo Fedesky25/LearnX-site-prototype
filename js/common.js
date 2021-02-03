@@ -65,6 +65,6 @@ function initNavToggle(context, navElement=null) {
 function setAnchors(offset, duration = 600) {
     document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
         const target = document.getElementById(anchor.getAttribute('href').slice(1));
-        anchor.addEventListener('click', e=>{e.preventDefault(); smoothScrollTo(target, offset, duration);})
+        anchor.addEventListener('click', e=>{e.preventDefault(); smoothScrollTo(target, offset, duration); anchor.blur();})
     });
 }
