@@ -6,7 +6,11 @@ body {min-height: 120vh;}
     justify-content: center;
     align-items: center;
 }
-@media screen and (min-width: 1400px) {.podcast,.podcast--reverse {gap: clamp(0rem, calc(15vw - 210px), 4rem);}}
+@media screen and (min-width: 1400px) {
+    /* .podcast,.podcast--reverse {gap: clamp(0rem, calc(15vw - 210px), 4rem);} */
+    .podcast > .podcast__content + .podcast__video {margin-left: clamp(0rem, calc(15vw - 210px), 4rem);}
+    .podcast--reverse > .podcast__content + .podcast__video {margin-right: clamp(0rem, calc(15vw - 210px), 4rem);}
+}
 .podcast + .podcast, .podcast--reverse + .podcast--reverse,
 .podcast + .podcast--reverse, .podcast--reverse + .podcast {margin-top: 5rem;}
 .podcast--reverse {flex-direction: row-reverse;}

@@ -31,19 +31,19 @@ section + section {margin-top: 5rem;}
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    column-gap: 8rem;
+    /* column-gap: 8rem;
     column-gap: clamp(4rem, calc(11vw - 2.8rem), 8rem);
     row-gap: 1.5rem;
-    padding: 32px;
+    padding: 32px; */
     overflow-x: hidden;
 
     --content-order: 1;
-    --fig-order: 2;
+    --fig-order: 3;
     --align: right;
     --hidden-translation: 50px;
 }
 .chunk--reverse {
-    --content-order: 2;
+    --content-order: 3;
     --fig-order: 1;
     --align: left;
     --hidden-translation: -50px;
@@ -53,7 +53,7 @@ section + section {margin-top: 5rem;}
 .chunk--reverse + .chunk,
 .chunk + .chunk--reverse,
 .chunk--reverse + .chunk--reverse {
-    margin-top: 2rem;
+    margin-top: 4rem;
 }
 
 .chunk__content {
@@ -71,6 +71,8 @@ section + section {margin-top: 5rem;}
     flex: .1 1 50ch;
     opacity: 0;
     transition: transform .5s ease-out, opacity .5s ease-in;
+    /* No gap */
+    margin: .725rem clamp(2rem, calc(11vw - 2.8rem), 4rem);
 }
 .chunk__fig > img, .chunk__fig > svg {
     max-height: 30ch;
@@ -96,9 +98,11 @@ section + section {margin-top: 5rem;}
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 48px;
+    /* gap: 48px; */
     padding: 0 32px;
 }
+.card {margin: 24px}
+
 .card {
     flex-basis: calc(33% - 32px);
     flex-grow: 1;
@@ -164,8 +168,10 @@ section + section {margin-top: 5rem;}
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1.5rem;
+    /* gap: 1.5rem; */
 }
+.card__square-img > .overlay > p + .member-links {margin-top: 1.5rem;}
+
 .card:hover > .card__square-img > .overlay  {
     transform: perspective(80rem) rotateY(0deg) scale(1);
     opacity: 1;
@@ -173,8 +179,10 @@ section + section {margin-top: 5rem;}
 .member-links {
     display: flex;
     justify-content: center;
-    gap: 16px;
+    /* gap: 16px; */
 }
+.member-links > a + a {margin-left: 16px;}
+
 .member-links > a {
     outline: none;
     display: block;

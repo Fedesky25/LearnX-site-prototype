@@ -77,7 +77,7 @@ header.common-header p {
     transform: scaleX(1);
 }
 
-@media screen and (max-width: 849.99px) {
+@media screen and (max-width: 899.99px) {
     .navaside {
         --pos: .4rem;
         --button-margin: .3rem;
@@ -96,7 +96,7 @@ header.common-header p {
         display: flex;
         flex-direction: column;
         align-items: center;
-        row-gap: .4rem;
+        /* row-gap: .4rem; */
         background-color: rgba(255, 255, 255,.65);
         backdrop-filter: blur(6px);
         border-radius: var(--radius);
@@ -107,6 +107,7 @@ header.common-header p {
         clip-path: circle(0% at calc(100% - var(--radius)) calc(100% - var(--radius)));
         transition: clip-path .4s ease-in;
     }
+    .navaside__links > * + * {margin-top: .4rem;}
     .navaside.active > .navaside__links {
         clip-path: circle(125% at calc(100% - var(--radius)) calc(100% - var(--radius)));
     }
@@ -146,7 +147,7 @@ header.common-header p {
         padding: calc(var(--radius) / 2);
         display: flex;
         flex-direction: column;
-        row-gap: 6px;
+        /* row-gap: 6px; */
         justify-content: center;
     }
     .navaside__button:focus {outline: none;}
@@ -158,6 +159,7 @@ header.common-header p {
         transform-origin: center;
         transition: all ease .4s;
     }
+    .navaside__button > .burger-line + .burger-line {margin-top: 6px;}
     .navaside.active > .navaside__button {box-shadow: none; transition-delay: .1s;}
     .navaside.active > .navaside__button > .burger-line:nth-child(1) {transform: translateY(9px) rotate(-45deg);}
     .navaside.active > .navaside__button > .burger-line:nth-child(2) {transform: scaleX(0); opacity: 0;}
@@ -165,7 +167,7 @@ header.common-header p {
 
     .navaside .hidden-narrow {display: none;}
 }
-@media screen and (min-width: 850px){
+@media screen and (min-width: 900px){
     :root {
         --icon-w: 1.8rem;
         --nav-w: 3.15rem;
@@ -194,9 +196,10 @@ header.common-header p {
         list-style: none;
         display: flex;
         flex-direction: column;
-        row-gap: 1rem;
         align-items: center;
+        /* row-gap: 1rem; */
     }
+    .navaside__links > * + * {margin-top: 1rem;}
     .navaside__links > .divisor {
         background-color: #425261;
         width: 3px;
