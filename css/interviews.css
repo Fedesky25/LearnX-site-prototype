@@ -59,7 +59,7 @@ body {min-height: 120vh;}
     font-weight: 500;
     font-family: "Merriweather", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     cursor: pointer;
-    color: var(--blue);
+    color: #333;
     text-align: left;
     white-space: normal;
     word-wrap: normal;

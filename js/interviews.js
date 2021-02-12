@@ -1,3 +1,8 @@
+window.addEventListener('hashchange', ()=>{
+    if(!window.location.hash.startsWith('#i-')) window.location.pathname='/universities.html';
+    else populate();
+})
+
 const tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -19,9 +24,15 @@ Number.prototype.toMMSS = function () {
 
 const mainBody = document.getElementById('mainBody');
 function populate(){
-    fetch('./js/interviewsData.json')
-    .then(file=>{
-        file.json()
+    fetch(`./json/istitutesData/${window.location.hash.substr(1)}.json`)
+    .then(res=>{
+        if(!res.ok) {
+            console.log(res.status, res.statusText);
+            window.location.pathname='/universities.html';
+            window.location.hash='';
+            return;
+        }
+        res.json()
         .then(data=>{
             //console.log(data);
             data.forEach((doc,index)=>{
@@ -29,7 +40,9 @@ function populate(){
                 if(index % 2 == 0) article.classList.add('podcast');
                 else article.classList.add('podcast--reverse');
                 const html = []
-                html.push(`<div class="podcast__content"><h3 class="podcast__title">${doc.istitute}</h3><h4 class="podcast__subtitle">Interview with ${doc.studentName}</h4><p class="podcast__desc">${doc.description}</p><ul class="podcast__timestamps">`);
+                html.push(`<div class="podcast__content"><h3 class="podcast__title">Interview with ${doc.student.name}</h3><h4 class="podcast__subtitle">Class of ${doc.student.class} | ${doc.student.title} in ${doc.student.subject}</h4>`);
+                if(doc.desc) html.push(`<p class="podcast__desc">${doc.desc}</p>`);
+                html.push('<ul class="podcast__timestamps">');
                 doc.timestamps.forEach(time=>{
                     html.push(`<li><button type="button" onclick="players[${index}].seekTo(${time.time}); players[${index}].playVideo();" data-time="${time.time.toMMSS()}">${time.label}</button></li>`);
                 })
@@ -40,10 +53,13 @@ function populate(){
             })
         })
         .catch(err=>{
-            console.log(`Error in JSON parsing: ${err}`);
+            alert(err);
+            window.location.pathname='/universities.html';
+            window.location.hash='';
         })
     })
     .catch(err=>{
-        console.log(`Error in fetching data: ${err}`);
+        window.location.pathname='/universities.html';
+        window.location.hash='';
     });
 }

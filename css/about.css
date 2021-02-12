@@ -99,7 +99,7 @@ section + section {margin-top: 5rem;}
     /* gap: 48px; */
     padding: 0 32px;
 }
-.card {margin: 24px}
+.card {margin: 24px;}
 
 .card {
     flex-basis: calc(33% - 32px);
