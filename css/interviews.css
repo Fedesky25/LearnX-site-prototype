@@ -34,13 +34,13 @@ body {min-height: 120vh;}
     position: absolute;
     top: .15em;
     bottom: .15em;
-    left: -.4em;
+    left: -.35em;
     width: .2em;
     background-color: var(--yellow);
 }
 .podcast__subtitle {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 500;
     color: #888;
 }
 .podcast__desc {
@@ -56,10 +56,9 @@ body {min-height: 120vh;}
     border: 0;
     background: unset;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 400;
     font-family: "Merriweather", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
     cursor: pointer;
-    color: #333;
     text-align: left;
     white-space: normal;
     word-wrap: normal;

@@ -1,5 +1,63 @@
 initNavToggle(document.querySelector('main'));
 const uniList = document.querySelector('.uni-list');
+const collapsible = {
+    target: document.querySelector('.sliding-collapsible'),
+    state: 0,
+    setProgress: function(progress) {
+        this.target.style.transform = `perspective(70rem) rotateX(${progress*90}deg) translateY(-${progress*4}rem) scale(${1-progress*.1})`;
+        this.target.style.height = `${this.target.scrollHeight*(Math.cos(progress*Math.PI/2))}px`;
+        this.target.style.marginTop = `-${progress*1.5}rem`;
+        this.state = 1;
+    } 
+}
+function slidingClose(duration=400) {
+    let initTime;
+    function animate(time) {
+        if(initTime===undefined) initTime = time;
+        const timeElapsed = time-initTime;
+        if(timeElapsed < duration) {
+            collapsible.setProgress(quadInOut(timeElapsed, 0, 1, duration));
+            requestAnimationFrame(animate);
+        }
+        else {
+            collapsible.target.style.transform = 'perspective(70rem) rotateX(90deg) translateY(-4rem) scale(.9)';
+            collapsible.target.style.height = '0px';
+            collapsible.target.style.marginTop = '-1.5rem';
+            collapsible.state = 2;
+        }
+    }
+    requestAnimationFrame(animate);
+}
+function slidingOpen(duration=400) {
+    let initTime;
+    function animate(time) {
+        if(initTime===undefined) initTime = time;
+        const timeElapsed = time-initTime;
+        if(timeElapsed < duration) {
+            collapsible.setProgress(quadInOut(timeElapsed, 1, -1, duration));
+            requestAnimationFrame(animate);
+        }
+        else {
+            collapsible.target.style.transform = 'perspective(70rem) rotateX(0) translateY(0)';
+            collapsible.target.style.height = `${collapsible.target.scrollHeight}px`;
+            collapsible.target.style.marginTop = '0';
+            collapsible.state = 0;
+        }
+    }
+    requestAnimationFrame(animate);
+}
+uniList.addEventListener('scroll', ()=>{
+    if(collapsible.state == 1) return;
+    if(uniList.scrollTop > 120) {
+        if(collapsible.state == 2) return;
+        else slidingClose();
+    }
+    else {
+        if(collapsible.state == 0) return;
+        else slidingOpen();
+    }
+});
+
 const map = L.map('map', {
     zoomControl: false,
     maxBounds: [[90, 186],[-80,-174]]
@@ -42,10 +100,18 @@ fetch('./json/istitutes.json')
 .catch(err=>{console.log(err); alert('Something went wrong');});
 
 if(window.innerWidth < 900) {
+    function closeMapOnTouch(e) {e.preventDefault(); window.location.hash='';}
     const mapContainer = document.querySelector('.map-container');
+    const context = document.querySelectorAll('header, ul.uni-list');
     window.addEventListener('hashchange', ()=>{
-        if(window.location.hash == '#map') mapContainer.classList.add('show');
-        else mapContainer.classList.remove('show');
+        if(window.location.hash == '#map') {
+            mapContainer.classList.add('show');
+            context.forEach(el=>{el.addEventListener('touchend', closeMapOnTouch)});
+        }
+        else {
+            mapContainer.classList.remove('show');
+            context.forEach(el=>{el.removeEventListener('touchend', closeMapOnTouch)})
+        }
     })
 }
 

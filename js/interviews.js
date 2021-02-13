@@ -1,5 +1,5 @@
 window.addEventListener('hashchange', ()=>{
-    if(!window.location.hash.startsWith('#i-')) window.location.pathname='/universities.html';
+    if(!window.location.hash.startsWith('#i-')) window.location.replace('./universities.html');
     else populate();
 })
 
@@ -28,8 +28,7 @@ function populate(){
     .then(res=>{
         if(!res.ok) {
             console.log(res.status, res.statusText);
-            window.location.pathname='/universities.html';
-            window.location.hash='';
+            window.location.replace('./universities.html');
             return;
         }
         res.json()
@@ -40,7 +39,9 @@ function populate(){
                 if(index % 2 == 0) article.classList.add('podcast');
                 else article.classList.add('podcast--reverse');
                 const html = []
-                html.push(`<div class="podcast__content"><h3 class="podcast__title">Interview with ${doc.student.name}</h3><h4 class="podcast__subtitle">Class of ${doc.student.class} | ${doc.student.title} in ${doc.student.subject}</h4>`);
+                html.push(`<div class="podcast__content"><h3 class="podcast__title">Interview with ${doc.student.name}</h3><h4 class="podcast__subtitle">`);
+                if(doc.student.class) html.push(`Class of ${doc.student.class} | `);
+                html.push(`${doc.student.title} in ${doc.student.subject}</h4>`);
                 if(doc.desc) html.push(`<p class="podcast__desc">${doc.desc}</p>`);
                 html.push('<ul class="podcast__timestamps">');
                 doc.timestamps.forEach(time=>{
@@ -54,12 +55,10 @@ function populate(){
         })
         .catch(err=>{
             alert(err);
-            window.location.pathname='/universities.html';
-            window.location.hash='';
+            window.location.replace('./universities.html');
         })
     })
     .catch(err=>{
-        window.location.pathname='/universities.html';
-        window.location.hash='';
+        window.location.replace('./universities.html');
     });
 }

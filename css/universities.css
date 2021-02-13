@@ -25,6 +25,10 @@ header.tilt-bottom::after {
     clip-path: polygon(0 7rem, 100% 100%, 100% calc(100% + 30px), 0 calc(100% + 30px));
     box-shadow: -25px 0 25px 0 rgba(0,0,0,.1);
 }
+.sliding-collapsible {
+    transform-origin: top;
+    transform-style: preserve-3d;
+}
 .input-group {
     display: flex;
     justify-content: space-around;
@@ -111,9 +115,9 @@ input[type=text]:focus, select:focus {
     #map {border-radius: 10px;}
     .uni-list {grid-row: 2/3; grid-column: 1/2;}
 }
-.uni-list::-webkit-scrollbar {width: 5px;}
+.uni-list::-webkit-scrollbar {width: 6px;}
 .uni-list::-webkit-scrollbar-track {background: #eee; border-radius: 10px;}
-.uni-list::-webkit-scrollbar-thumb {background-color: #ddd; border-radius: 10px;}
+.uni-list::-webkit-scrollbar-thumb {background-color: #d2d2d2; border-radius: 10px;}
 .istitute + .istitute {margin-top: 3rem;}
 .istitute {
     position: relative;
